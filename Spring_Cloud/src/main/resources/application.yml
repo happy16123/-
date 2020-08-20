@@ -8,6 +8,19 @@ spring:
      # servers:
       #- dev.bar.com
       #- foo.bar.com
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: microservices
+      username: micro
+      password: micro
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
+  devtools:
+    restart:
+      exclude: static/**
   
 logging:
   pattern:
@@ -17,3 +30,11 @@ logging:
     org.springframework.web: DEBUG
   file: app.log
  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: "always"
