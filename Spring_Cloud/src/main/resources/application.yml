@@ -1,6 +1,6 @@
 server:
-  port: ${port:2222}
-  
+  port: ${port:8181}
+
 spring:
   application:
     name: first-service
