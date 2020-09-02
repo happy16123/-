@@ -1,8 +1,8 @@
 server:
-  port: 8801
+  port: 8802
 spring:
   application:
-    name: api-gateway
+    name: auth-center
   datasource:
     url: jdbc:mysql://localhost:3306/ssafy?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: user
@@ -14,29 +14,20 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1200000
       auto-commit: true
-
+      
 mybatis:
   type-aliases-package: com.cloud.mapper
   mapper-locations:
   - classpath:/mapper/**/*Mapper.xml
   config-location: classpath:config/mybatis-config.xml
-
+  
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
-
-zuul:
-  routes:
-   service-a:
-     path: /spring/**
-     service-id: client-service
-   service-b:
-     path: /django/**
-     service-id: django-app
-     
+      
 logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
@@ -52,4 +43,4 @@ custom:
       header: Authorization
       token-prefix: Bearer 
       secret: custom
-      expiration-time: 300000
+      expiration-time: 300000      
