@@ -19,7 +19,6 @@ mybatis:
   type-aliases-package: com.cloud.mapper
   mapper-locations:
   - classpath:/mapper/**/*Mapper.xml
-  config-location: classpath:config/mybatis-config.xml
 
 eureka:
   client:
@@ -45,11 +44,3 @@ logging:
     org.springframework.web: INFO
   file: app.log
   
-  
-custom:
-  security:
-    jwt:
-      header: Authorization
-      token-prefix: Bearer 
-      secret: custom
-      expiration-time: 300000
