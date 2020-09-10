@@ -35,6 +35,11 @@ zuul:
    service-b:
      path: /django/**
      service-id: django-app
+   service-c:
+     path: /security/**
+     service-id: auth-center
+     sensitive-headers:
+      - 
      
 logging:
   pattern:

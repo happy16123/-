@@ -19,11 +19,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
 	private final JwtProperties jwt;
 
-	public JwtAuthenticationFilter(JwtProperties jwt) {
+	public JwtAuthorizationFilter(JwtProperties jwt) {
 		this.jwt = jwt;
 	}
 
@@ -31,7 +31,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String header = request.getHeader(jwt.getHeader());
-		logger.info("dadfasdfasfd");
 		if (header == null || !header.startsWith(jwt.getTokenPrefix())) {
 			filterChain.doFilter(request, response);
 			return;
