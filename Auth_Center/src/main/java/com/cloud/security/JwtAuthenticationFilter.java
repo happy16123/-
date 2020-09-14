@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,7 +42,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		} catch(Exception e) {
 			logger.error("유저 없음");
 		}
-		logger.info("ccccccccccccccc");
 		
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
 				credentials.getUsername(),
