@@ -1,11 +1,17 @@
 server:
-  port: ${PORT:8761}
+  port: 8761
  
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     
+spring:
+  security:
+    user:
+      name: admin
+      password: admin123
+      
 logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
