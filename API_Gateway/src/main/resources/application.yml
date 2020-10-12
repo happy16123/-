@@ -1,12 +1,8 @@
-server:
-  port: 8801
 spring:
   application:
-    name: api-gateway
+    name: gateway-service
   datasource:
     url: jdbc:mysql://localhost:3306/ssafy?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
-    username: user
-    password: user
     hikari:
       connection-timeout: 20000
       minimum-idle: 5
@@ -14,33 +10,13 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1200000
       auto-commit: true
-
-mybatis:
-  type-aliases-package: com.cloud.mapper
-  mapper-locations:
-  - classpath:/mapper/**/*Mapper.xml
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
+    
 zuul:
   routes:
    service-a:
-     path: /spring/**
+     path: /api/**
      service-id: client-service
-   service-b:
-     path: /django/**
-     service-id: django-app
-   service-c:
-     path: /security/**
-     service-id: auth-center
-     sensitive-headers:
-      - 
-     
+
 logging:
   pattern:
     console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"
@@ -48,4 +24,63 @@ logging:
   level:
     org.springframework.web: INFO
   file: app.log
+
+---
+
+server:
+  port: 8801
   
+spring:
+  profiles:
+  - zone1
+
+eureka:
+  client:
+    register-with-eureka: true
+    preferSameZoneEureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      zone: zone1
+
+---
+
+server:
+  port: 8802
+  
+spring:
+  profiles:
+  - zone2
+
+eureka:
+  client:
+    register-with-eureka: true
+    preferSameZoneEureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      zone: zone2
+
+---
+
+server:
+  port: 8803
+  
+spring:
+  profiles:
+  - zone3
+
+eureka:
+  client:
+    register-with-eureka: true
+    preferSameZoneEureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      zone: zone3
