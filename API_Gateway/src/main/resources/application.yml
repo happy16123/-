@@ -16,6 +16,9 @@ zuul:
    service-a:
      path: /api/**
      service-id: client-service
+   service-b:
+     path: /feign/**
+     service-id: feign-service
 
 logging:
   pattern:
