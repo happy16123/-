@@ -57,7 +57,7 @@ eureka:
   instance:
     prefer-ip-address: true
     metadata-map:
-      zone: zone2
+      zone: zone1
 
 ---
 
@@ -76,5 +76,5 @@ eureka:
   instance:
     prefer-ip-address: true
     metadata-map:
-      zone: zone3
+      zone: zone1
 
